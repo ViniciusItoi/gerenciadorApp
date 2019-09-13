@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+<link type="text/javascript" href="jquery-3.4.1.min.js" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<style>
+body{
+	background-image: url("../bgGerenciador.png");
+	background-repeat: no-repeat;
+	background-size:100%;
+}
+</style>
+<title>Gerenciador de arquivos</title>
+</head>
+
+<body >
+	<div th:replace="nav.html :: navBar"></div>
+	<div class="card-panel">
+		<div class="container">
+			<h4>
+				Bem vindo ao Gerenciador de <strong>Arquivos</strong>
+			</h4>
+		</div>
+	</div>
+
+	<div >
+		<div class="container">
+			<h5>Aqui você poderá:</h5>
+			<h6>Compartilhar seus arquivos</h6>
+			<h6>Vizualizar seus arquivos</h6>
+			<h6>Baixar seus arquivos</h6>
+		</div>
+	</div>
+
+
+	<div th:replace="footer.html :: footer"></div>
+
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+			var elems = document.querySelectorAll('.modal');
+			var instances = M.Modal.init(elems, {});
+		});
+	</script>
+
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+</html>

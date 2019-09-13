@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+
+<title>Gerenciador de Arquivos</title>
+</head>
+<body>
+	<div th:replace="nav.html :: navBar"></div>
+	<div class="card-panel">
+		<div class="container">
+			<h4>
+				Cadastrar <strong>Arquivo</strong>
+			</h4>
+		</div>
+	</div>
+
+
+	<div class="container">
+		<form class="container" method="post">
+			<label for="nome"> Nome:</label> 
+			<input required minlength="5" type="text" value="" name="nome" />
+			
+			<label for="dados"> Arquivo:</label>
+			<input required minlength="5" type="text" value="" name="dados" /> 
+
+		 	<label for="usuario"> Usuario:</label>
+			<input type="number" value="" name="usuario" />
+
+			<button class="btn waves-effect green waves-light" type="submit">
+				<i class="material-icons right">send</i>Salvar
+			</button>
+			<button onclick="history.go(-1);"
+				class="btn waves-effect waves-light red  right">
+				<i class="material-icons right">keyboard_backspace</i>Voltar
+			</button>
+		</form>
+
+	</div>
+
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+<div th:replace="footer.html :: footer"></div>
+</body>
+</html>

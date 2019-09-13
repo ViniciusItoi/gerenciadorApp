@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+<link type="text/javascript" href="jquery-3.4.1.min.js" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+
+<title>Gerenciador de arquivos</title>
+</head>
+
+<body>
+	<div th:replace="nav.html :: navBar"></div>
+	<div class="card-panel">
+		<div class="container">
+			<h4>
+				Listar <strong>Usuários</strong>
+			</h4>
+			<a class="btn waves-effect waves-light right blue"
+				href="/cadastrarUsuario"> <i class="material-icons right">add</i>Cadastrar
+				Usuário
+			</a>
+		</div>
+	</div>
+
+	<div class="container">
+		<table class="responsive-table striped highlight">
+			<thead>
+				<tr>
+					<th hidden>Id</th>
+					<th class="col s4 left">Nome</th>
+					<th class="col s4 center">Administrador</th>
+					<th class="col s4 right">Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="usuario:${usuarios}">
+					<th class="col s4 left">
+						<form method=post action="/detalheUsuario">
+								<input name="id" th:value="${usuario.id}" hidden></input>
+								 <a href="#" onclick="this.parentNode.submit()"><span th:text="${usuario.usuario}"></span></a>
+						</form>
+					</th>
+					
+					<th class="col s4 center">
+						<input type="checkbox" name="isAdm" checked="checked" />
+						<span></span>
+					</th>
+					
+					<th class="col s4 right">
+						
+						<a class="btn-floating btn-small btn modal-trigger waves-effect waves-light blue" th:href="@{'#modalEdit_' + ${usuario.id}}"> 
+							<i class="material-icons">edit</i>
+						</a> <label>Editar &emsp;</label> 
+						<a class="btn-floating btn-small btn modal-trigger waves-effect waves-light red" th:href="@{'#modalDelete_' + ${usuario.id}}">
+							<i class="material-icons">remove</i>
+						</a> <label>Remover</label>
+						
+					</th>
+					<!-- START MODAL DELETE -->
+					<div th:id="'modalDelete_'+${usuario.id}" class="container modal">
+						<div class="modal-content">
+							<h4>Deletar <strong>Arquivo</strong></h4>
+							<p>
+								Tem certeza que deseja <strong>Deletar</strong> <span th:text="${usuario.usuario}">?
+							</p>
+							<p class="warning">Esta alteração não pode ser desfeita ...</p>
+						</div>
+						<div class="modal-footer">
+							<form method="post" action="/removerUsuario">
+								<input name="id" th:value="${usuario.id}" hidden/> 
+								<button type="submit" class="waves-effect waves-light btn red">Deletar</button>
+							</form>
+							<button class="modal-action modal-close waves-effect waves-light btn blue">Cancelar</button>
+						</div>
+					</div>
+					 <!-- END MODAL DELETE -->
+					
+					<!-- START MODAL EDIT -->
+					<div th:id="'modalEdit_'+${usuario.id}" class="container modal">
+						
+							<div class="modal-content">
+								<h4>Editar <strong>Header</strong></h4>
+								<form method="post" action="/editarUsuario">
+									
+									<input name="id" th:value="${usuario.id}" hidden/> 
+									
+									<label for="usuario"> Usuario:</label> 
+									<input required minlength="5" type="text" th:value="${usuario.usuario}" name="usuario" />
+									
+									<label> Senha:</label>
+									<input required minlength="5" type="text" th:value="${usuario.senha}" /> 
+						
+								 	<label for="senha"> Senha:</label>
+									<input required minlength="5" type="password" value="" name="senha" />
+									
+									<div class="modal-footer">
+										<button type="submit" class="btn waves-effect waves-light right green"> Editar</button>
+								</form>
+										<button class="modal-action modal-close waves-effect waves-light btn red">Cancelar</button>
+									</div>
+							</div>
+						</div>
+					<!-- END MODAL EDIT -->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div th:replace="footer.html :: footer"></div>
+
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+			var elems = document.querySelectorAll('.modal');
+			var instances = M.Modal.init(elems, {});
+		});
+	</script>
+
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+com\gerenciadorapp\gerenciadorapp\controller\UsuarioController.class
+com\gerenciadorapp\gerenciadorapp\GerenciadorappApplication.class
+com\gerenciadorapp\gerenciadorapp\model\UsuarioModel.class
+com\gerenciadorapp\gerenciadorapp\controller\ArquivoController.class
+com\gerenciadorapp\gerenciadorapp\controller\indexController.class
+com\gerenciadorapp\gerenciadorapp\data\DataConfiguration.class
+com\gerenciadorapp\gerenciadorapp\model\ArquivoModel.class
